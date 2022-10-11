@@ -14,12 +14,21 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
 
       <ScrollView
         horizontal
-        contentContainerStyle={{
-          paddingHorizontal: 15,
-        }}
         showsHorizontalScrollIndicator={false}
         className="pt-4"
       >
+        <RestaurantCard
+          id={123}
+          title="Yo! Sushi"
+          imgUri="https://links.papareact.com/gn7"
+          rating={4.5}
+          genre="Japenese"
+          address="123, Main St"
+          short_description="This is a test description"
+          dishes={[]}
+          lat={20}
+          lng={0}
+        />
         <RestaurantCard
           id={123}
           title="Yo! Sushi"

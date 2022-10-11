@@ -14,7 +14,7 @@ const HomeScreen = () => {
     });
   }, [navigation]);
   return (
-    <SafeAreaView className="bg-white pt-5">
+    <SafeAreaView className="bg-white pt-10 flex-1">
       <View className="flex-row pb-3 items-center px-4 space-x-2">
         <Image
           source={{ uri: 'https://links.papareact.com/wru' }}
@@ -22,7 +22,7 @@ const HomeScreen = () => {
         />
         <View className="flex-1">
           <Text className="font-bold text-xs text-gray-400">Deliver Now!</Text>
-          <Text className="font-bold text-xl">
+          <Text className="font-bold flex-row items-center text-xl">
             Current Location
             <ChevronDownIcon size={20} color="#00CCBB" />
           </Text>
@@ -32,7 +32,7 @@ const HomeScreen = () => {
 
       {/* Search */}
       <View className="flex-row items-center space-x-2 pb-2 mx-4">
-        <View className="bg-gray-200 flex-row space-x-2 flex-1 p-3">
+        <View className="bg-gray-200 flex-row items-center space-x-2 flex-1 p-3">
           <MagnifyingGlassIcon size={20} color="gray" />
           <TextInput placeholder='Restaurents and cuisines' />
         </View>
@@ -40,7 +40,7 @@ const HomeScreen = () => {
       </View>
 
       {/* Content */}
-      <ScrollView className="bg-gray-50">
+      <ScrollView contentContainerStyle={{ paddingBottom: 8 }} className="bg-gray-50 flex-1">
         {/* Categories */}
         <Categories />
 
