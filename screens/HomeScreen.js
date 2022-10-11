@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronDownIcon, UserIcon, MagnifyingGlassIcon, AdjustmentsVerticalIcon } from 'react-native-heroicons/outline';
 import Categories from '../components/Categories';
+import FeaturedRow from '../components/FeaturedRow';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -42,6 +43,11 @@ const HomeScreen = () => {
       <ScrollView>
         {/* Categories */}
         <Categories />
+
+        {/* Featured Rows */}
+        <FeaturedRow />
+        <FeaturedRow />
+        <FeaturedRow />
       </ScrollView>
     </SafeAreaView>
   );
