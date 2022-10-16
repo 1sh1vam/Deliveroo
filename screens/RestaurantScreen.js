@@ -3,7 +3,9 @@ import React, { useLayoutEffect } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { urlFor } from '../sanity';
 import { styled } from 'nativewind';
+import { ChevronRightIcon } from 'react-native-heroicons/outline';
 import { ArrowLeftIcon, MapPinIcon, StarIcon } from 'react-native-heroicons/solid';
+import { QuestionMarkCircleIcon } from 'react-native-heroicons/outline';
 
 const StyledPressable = styled(Pressable);
 
@@ -31,12 +33,12 @@ const RestaurantScreen = () => {
 
   return (
     <ScrollView>
-        <View className="relative">
-            <Image className="w-full h-56" source={{ uri: urlFor(imgUri).url() }} />
-            <StyledPressable onPress={navigation.goBack} className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full active:opacity-50">
-                <ArrowLeftIcon size={20} color="#00CCBB" />
-            </StyledPressable>
-        </View>
+      <View className="relative">
+          <Image className="w-full h-56" source={{ uri: urlFor(imgUri).url() }} />
+          <StyledPressable onPress={navigation.goBack} className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full active:opacity-50">
+              <ArrowLeftIcon size={20} color="#00CCBB" />
+          </StyledPressable>
+      </View>
       <View className="bg-white">
         <View className="px-4 py-4">
           <Text className="font-bold text-3xl">{title}</Text>
@@ -54,7 +56,14 @@ const RestaurantScreen = () => {
           </View>
           <Text className="text-gray-500 mt-2">{short_description}</Text>
         </View>
+
+        <StyledPressable className="flex-row items-center p-4 space-x-2 border-y border-gray-300">
+          <QuestionMarkCircleIcon size={20} color="gray" opacity={0.6} />
+          <Text className="flex-1 font-semibold pl-2">Have a food allergy?</Text>
+          <ChevronRightIcon size={20} color="#00CCBB" />
+        </StyledPressable>
       </View>
+
     </ScrollView>
   )
 }
