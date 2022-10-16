@@ -12,7 +12,7 @@ import { styled } from 'nativewind';
 import { XCircleIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
 import { selectRestaurant } from '../store/reducers/restaurant';
-import { selecteBasketItems } from '../store/reducers/basket';
+import { selectBasketTotal, selecteBasketItems } from '../store/reducers/basket';
 import { urlFor } from '../sanity';
 
 const StyledPressable = styled(Pressable);
@@ -20,6 +20,7 @@ const StyledPressable = styled(Pressable);
 const BasketScreen = () => {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
+  const basketTotal = useSelector(selectBasketTotal);
   const items = useSelector(selecteBasketItems);
 
   const groupedItems = useMemo(
@@ -33,8 +34,8 @@ const BasketScreen = () => {
 
   console.log('geer', groupedItems, items);
   return (
-    <SafeAreaView className="flex-1">
-      <View className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="flex-1 bg-gray-100">
         <View className="p-5 border-b border-[#00CCBB] bg-white shadow-xs">
           <View>
             <Text className="text-lg font-bold text-center">Basket</Text>
@@ -78,6 +79,25 @@ const BasketScreen = () => {
             </View>
           ))}
         </ScrollView>
+
+        <View className="bg-white p-5 mt-5 space-y-4">
+          <View className="flex-row items-center justify-between">
+            <Text className="text-gray-400">Subtotal</Text>
+            <Text className="text-gray-400">₹{basketTotal}</Text>
+          </View>
+          <View className="flex-row items-center justify-between">
+            <Text className="text-gray-400">Delivery Charges</Text>
+            <Text className="text-gray-400">₹40</Text>
+          </View>
+          <View className="flex-row items-center justify-between">
+            <Text>Order Total</Text>
+            <Text className="font-extrabold">₹{basketTotal + 40}</Text>
+          </View>
+
+          <StyledPressable className="active:opacity-50 bg-[#00CCBB] p-4 rounded-lg">
+            <Text className="text-white text-center text-lg font-bold">Place Order</Text>
+          </StyledPressable>
+        </View>
       </View>
     </SafeAreaView>
   );
