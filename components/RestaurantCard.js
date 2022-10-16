@@ -19,7 +19,7 @@ const RestaurantCard = ({
     lng,
 }) => {
   return (
-    <StyledPressable className="mr-3 bg-white shadow rounded">
+    <StyledPressable className="mr-3 bg-white shadow rounded active:opacity-50">
       <Image source={{ uri: urlFor(imgUri).url() }} className="w-64 h-36 rounded-sm" />
       <View className="px-3 pb-4">
         <Text className="font-bold text-lg pt-2">{title}</Text>
