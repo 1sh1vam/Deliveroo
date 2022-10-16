@@ -1,10 +1,10 @@
 import { Image, Pressable, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { styled } from 'nativewind';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid';
 import { urlFor } from '../sanity';
-import { addToBasket, removeFromBasket } from '../store/reducers/basket';
+import { addToBasket, removeFromBasket, selectBasketItemsWithId } from '../store/reducers/basket';
 
 const StyledPressable = styled(Pressable);
 
@@ -12,11 +12,14 @@ const DishRow = ({ id, name, description, price, image }) => {
   const dispatch = useDispatch();
   const [isPressed, setIsPressed] = useState(false);
 
+  const basketItems = useSelector((state) => selectBasketItemsWithId(id, state));
+
   const addItemToBasket = () => {
     dispatch(addToBasket({ id, name, description, price, image }))
   }
 
   const removeItemFromBasket = () => {
+    if (basketItems.length <= 0) return;
     dispatch(removeFromBasket({ id }));
   }
 
@@ -42,11 +45,11 @@ const DishRow = ({ id, name, description, price, image }) => {
       </StyledPressable>
       {isPressed && (
         <View className="bg-white px-4 flex-row items-center space-x-2 pb-3">
-          <StyledPressable onPress={addItemToBasket} className="active:opacity-50">
-            <MinusCircleIcon size={40} color="#00CCBB" />
-          </StyledPressable>
-          <Text>0</Text>
           <StyledPressable onPress={removeItemFromBasket} className="active:opacity-50">
+            <MinusCircleIcon size={40} color={basketItems.length > 0 ? "#00CCBB" : "gray"} />
+          </StyledPressable>
+          <Text>{basketItems.length}</Text>
+          <StyledPressable onPress={addItemToBasket} className="active:opacity-50">
             <PlusCircleIcon size={40} color="#00CCBB" />
           </StyledPressable>
         </View>
