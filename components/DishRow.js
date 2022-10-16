@@ -1,13 +1,25 @@
 import { Image, Pressable, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { styled } from 'nativewind';
+import { useDispatch } from 'react-redux';
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid';
 import { urlFor } from '../sanity';
+import { addToBasket, removeFromBasket } from '../store/reducers/basket';
 
 const StyledPressable = styled(Pressable);
 
 const DishRow = ({ id, name, description, price, image }) => {
+  const dispatch = useDispatch();
   const [isPressed, setIsPressed] = useState(false);
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket({ id, name, description, price, image }))
+  }
+
+  const removeItemFromBasket = () => {
+    dispatch(removeFromBasket({ id }));
+  }
+
   return (
     <>
       <StyledPressable
@@ -30,11 +42,11 @@ const DishRow = ({ id, name, description, price, image }) => {
       </StyledPressable>
       {isPressed && (
         <View className="bg-white px-4 flex-row items-center space-x-2 pb-3">
-          <StyledPressable className="active:opacity-50">
+          <StyledPressable onPress={addItemToBasket} className="active:opacity-50">
             <MinusCircleIcon size={40} color="#00CCBB" />
           </StyledPressable>
           <Text>0</Text>
-          <StyledPressable className="active:opacity-50">
+          <StyledPressable onPress={removeItemFromBasket} className="active:opacity-50">
             <PlusCircleIcon size={40} color="#00CCBB" />
           </StyledPressable>
         </View>
