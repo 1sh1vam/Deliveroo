@@ -6,6 +6,7 @@ import { styled } from 'nativewind';
 import { ChevronRightIcon } from 'react-native-heroicons/outline';
 import { ArrowLeftIcon, MapPinIcon, StarIcon } from 'react-native-heroicons/solid';
 import { QuestionMarkCircleIcon } from 'react-native-heroicons/outline';
+import DishRow from '../components/DishRow';
 
 const StyledPressable = styled(Pressable);
 
@@ -64,6 +65,21 @@ const RestaurantScreen = () => {
         </StyledPressable>
       </View>
 
+      <View>
+        <Text className="font-bold text-xl px-4 pt-6 mb-3">Menu</Text>
+
+        {/* Dish Arrows */}
+        {dishes.map((dish) => (
+          <DishRow
+            key={dish._id}
+            id={dish._id}
+            name={dish.name}
+            description={dish.short_description}
+            price={dish.price}
+            image={dish.image}
+          />
+        ))}
+      </View>
     </ScrollView>
   )
 }
