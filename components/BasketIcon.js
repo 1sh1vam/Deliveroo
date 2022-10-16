@@ -6,15 +6,17 @@ import {
   selectBasketTotal,
   selecteBasketItems,
 } from '../store/reducers/basket';
+import { useNavigation } from '@react-navigation/native';
 
 const StyledPressable = styled(Pressable);
 
 const BasketIcon = () => {
+  const navigation = useNavigation();
   const items = useSelector(selecteBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
 
   return (
-    <StyledPressable className="absolute bottom-10 w-full z-50">
+    <StyledPressable onPress={() => navigation.navigate('Basket')} className="absolute bottom-10 w-full z-50 active:opacity-50">
       <View className="bg-[#00CCBB] mx-5 p-4 rounded-lg flex-row items-center">
         <Text className="text-white bg-[#01A296] text-lg font-extrabold px-2 py-1">
           {items.length}
