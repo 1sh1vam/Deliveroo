@@ -98,7 +98,7 @@ const BasketScreen = () => {
             <Text className="font-extrabold">₹{basketTotal + 40}</Text>
           </View>
 
-          <StyledPressable className="active:opacity-50 bg-[#00CCBB] p-4 rounded-lg">
+          <StyledPressable onPress={() => navigation.navigate('PreparingOrderScreen')} className="active:opacity-50 bg-[#00CCBB] p-4 rounded-lg">
             <Text className="text-white text-center text-lg font-bold">Place Order</Text>
           </StyledPressable>
         </View>
