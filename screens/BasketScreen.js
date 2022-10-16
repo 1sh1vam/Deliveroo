@@ -7,17 +7,18 @@ import {
   ScrollView,
 } from 'react-native';
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { styled } from 'nativewind';
 import { XCircleIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
 import { selectRestaurant } from '../store/reducers/restaurant';
-import { selectBasketTotal, selecteBasketItems } from '../store/reducers/basket';
+import { removeFromBasket, selectBasketTotal, selecteBasketItems } from '../store/reducers/basket';
 import { urlFor } from '../sanity';
 
 const StyledPressable = styled(Pressable);
 
 const BasketScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   const basketTotal = useSelector(selectBasketTotal);
@@ -32,7 +33,10 @@ const BasketScreen = () => {
     [items]
   );
 
-  console.log('geer', groupedItems, items);
+  const removeItem = (id) => {
+    dispatch(removeFromBasket({ id }));
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 bg-gray-100">
@@ -73,7 +77,7 @@ const BasketScreen = () => {
               <Image source={{ uri: urlFor(items[0].image).url() }} className="h-12 w-12 rounded-full" />
               <Text className="flex-1">{items[0].name}</Text>
               <Text className="text-gray-600">₹{items[0].price}</Text>
-              <StyledPressable className="active:opacity-50">
+              <StyledPressable onPress={() => removeItem(itemId)} className="active:opacity-50">
                 <Text className="text-[#00CCBB] text-xs">Remove</Text>
               </StyledPressable>
             </View>
