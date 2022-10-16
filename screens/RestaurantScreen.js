@@ -33,7 +33,7 @@ const RestaurantScreen = () => {
     <ScrollView>
         <View className="relative">
             <Image className="w-full h-56" source={{ uri: urlFor(imgUri).url() }} />
-            <StyledPressable className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full active:opacity-50">
+            <StyledPressable onPress={navigation.goBack} className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full active:opacity-50">
                 <ArrowLeftIcon size={20} color="#00CCBB" />
             </StyledPressable>
         </View>
