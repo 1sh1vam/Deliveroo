@@ -6,12 +6,12 @@ const StyledPressable = styled(Pressable);
 
 const CategoryCard = ({ imgUri, title }) => {
     return (
-        <StyledPressable className="relative mr-2 active:opacity-80">
+        <StyledPressable className="mr-2 active:opacity-80 w-20">
             <Image
-                className="w-20 h-20"
+                className="w-20 h-20 rounded-full"
                 source={{ uri: imgUri }}
             />
-            <Text className="absolute bottom-1 left-1 text-white font-bold">{title}</Text>
+            <Text className="text-slate-600 text-center font-bold">{title}</Text>
         </StyledPressable>
     )
 }
