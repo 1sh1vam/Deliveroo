@@ -11,7 +11,7 @@ const CategoryCard = ({ imgUri, title }) => {
                 className="w-20 h-20 rounded-full"
                 source={{ uri: imgUri }}
             />
-            <Text className="text-slate-600 text-center font-bold">{title}</Text>
+            <Text className="text-slate-600 text-center text-xs font-semibold">{title}</Text>
         </StyledPressable>
     )
 }
