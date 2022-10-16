@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { styled } from 'nativewind'
 import { MapPinIcon, StarIcon } from 'react-native-heroicons/outline';
+import { urlFor } from '../sanity';
 
 const StyledPressable = styled(Pressable);
 
@@ -19,7 +20,7 @@ const RestaurantCard = ({
 }) => {
   return (
     <StyledPressable className="mr-3 bg-white shadow rounded">
-      <Image source={{ uri: imgUri }} className="w-64 h-36 rounded-sm" />
+      <Image source={{ uri: urlFor(imgUri).url() }} className="w-64 h-36 rounded-sm" />
       <View className="px-3 pb-4">
         <Text className="font-bold text-lg pt-2">{title}</Text>
         <View className="flex-row items-center space-x-1">
