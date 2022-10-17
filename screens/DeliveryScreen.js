@@ -6,16 +6,18 @@ import * as Progress from 'react-native-progress';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../store/reducers/restaurant';
 import MapView from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 
 const StyledPressable = styled(Pressable);
 
 const DeliveryScreen = () => {
+  const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   return (
     <View className="flex-1 bg-[#00CCBB]">
         <SafeAreaView className="z-50">
             <View className="flex-row items-center justify-between p-5">
-                <StyledPressable className="active:opacity-50">
+                <StyledPressable onPress={() => navigation.navigate('Home')} className="active:opacity-50">
                     <XMarkIcon color="white" size={30} />
                 </StyledPressable>
                 <Text className="text-white font-light text-lg">Order Help</Text>
