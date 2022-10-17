@@ -5,7 +5,7 @@ import { XMarkIcon } from 'react-native-heroicons/solid';
 import * as Progress from 'react-native-progress';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../store/reducers/restaurant';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 
 const StyledPressable = styled(Pressable);
@@ -49,7 +49,16 @@ const DeliveryScreen = () => {
             className="flex-1 -mt-10 z-0"
             mapType="mutedStandard"
         >
-
+            <Marker
+                coordinate={{
+                    latitude: restaurant.lat,
+                    longitude: restaurant.lng,
+                }}
+                title={restaurant.title}
+                description={restaurant.short_description}
+                identifier="origin"
+                pinColor="#00CCBB"
+            />
         </MapView>
     </View>
   )
