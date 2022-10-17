@@ -5,6 +5,7 @@ import { XMarkIcon } from 'react-native-heroicons/solid';
 import * as Progress from 'react-native-progress';
 import { useSelector } from 'react-redux';
 import { selectRestaurant } from '../store/reducers/restaurant';
+import MapView from 'react-native-maps';
 
 const StyledPressable = styled(Pressable);
 
@@ -35,6 +36,19 @@ const DeliveryScreen = () => {
                 <Text className="text-gray-500 mt-3">Your order at {restaurant.title} is being prepared</Text>
             </View>
         </SafeAreaView>
+
+        <MapView
+            initialRegion={{
+                latitude: restaurant.lat,
+                longitude: restaurant.lng,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0.005,
+            }}
+            className="flex-1 -mt-10 z-0"
+            mapType="mutedStandard"
+        >
+
+        </MapView>
     </View>
   )
 }
