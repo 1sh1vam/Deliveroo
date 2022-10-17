@@ -3,10 +3,13 @@ import React from 'react'
 import { styled } from 'nativewind';
 import { XMarkIcon } from 'react-native-heroicons/solid';
 import * as Progress from 'react-native-progress';
+import { useSelector } from 'react-redux';
+import { selectRestaurant } from '../store/reducers/restaurant';
 
 const StyledPressable = styled(Pressable);
 
 const DeliveryScreen = () => {
+  const restaurant = useSelector(selectRestaurant);
   return (
     <View className="flex-1 bg-[#00CCBB]">
         <SafeAreaView className="z-50">
@@ -29,10 +32,9 @@ const DeliveryScreen = () => {
                     />
                 </View>
                 <Progress.Bar size={30} color="#00CCBB" indeterminate />
-                <Text>Your order at </Text>
+                <Text className="text-gray-500 mt-3">Your order at {restaurant.title} is being prepared</Text>
             </View>
         </SafeAreaView>
-      <Text>DeliveryScreen</Text>
     </View>
   )
 }
