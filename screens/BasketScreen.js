@@ -6,7 +6,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { styled } from 'nativewind';
 import { XCircleIcon } from 'react-native-heroicons/solid';
@@ -23,6 +23,16 @@ const BasketScreen = () => {
   const restaurant = useSelector(selectRestaurant);
   const basketTotal = useSelector(selectBasketTotal);
   const items = useSelector(selecteBasketItems);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('Delivery');
+    }, 5000)
+
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [])
 
   const groupedItems = useMemo(
     () =>
