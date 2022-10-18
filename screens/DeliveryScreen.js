@@ -15,7 +15,7 @@ const DeliveryScreen = () => {
     const restaurant = useSelector(selectRestaurant);
     return (
         <View className="flex-1 bg-[#00CCBB]">
-            <SafeAreaView className="z-50">
+            <SafeAreaView className="z-50 pt-5">
                 <View className="flex-row items-center justify-between p-5">
                     <StyledPressable onPress={() => navigation.navigate('Home')} className="active:opacity-50">
                         <XMarkIcon color="white" size={30} />
