@@ -24,16 +24,6 @@ const BasketScreen = () => {
   const basketTotal = useSelector(selectBasketTotal);
   const items = useSelector(selecteBasketItems);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.navigate('Delivery');
-    }, 5000)
-
-    return () => {
-      clearTimeout(timer);
-    }
-  }, [])
-
   const groupedItems = useMemo(
     () =>
       items.reduce((results, item) => {
